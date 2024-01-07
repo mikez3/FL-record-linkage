@@ -124,7 +124,7 @@ Below is a sample config for site-1, saved to `./jobs/sklearn_svm_3_uniform/app_
 ```
 
 ## Run experiment with FL simulator
-[FL simulator](https://nvflare.readthedocs.io/en/latest/user_guide/fl_simulator.html) is used to simulate FL experiments or debug codes, not for real FL deployment.
+[FL simulator](https://nvflare.readthedocs.io/en/2.3/user_guide/fl_simulator.html) is used to simulate FL experiments or debug codes, not for real FL deployment.
 We can run the FL simulator with three clients under the uniform data split with
 ```commandline
 nvflare simulator ./jobs/sklearn_svm_3_uniform -w ./workspace -n 3 -t 3
