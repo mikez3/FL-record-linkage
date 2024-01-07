@@ -22,7 +22,7 @@ To load the data for each client, the following parameters are expected by local
 - valid_end: (`int`) end row index for the validation set.
 
 ### Federated SVM
-The machine learning algorithm shown in this example is [SVM for Classification (SVC)](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html).
+The machine learning algorithm used is [SVM for Classification (SVC)](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html).
 Under this setting, federated learning can be formulated in two steps:
 - local training: each client trains a local SVM model with their own data
 - global training: server collects the support vectors from all clients and 
