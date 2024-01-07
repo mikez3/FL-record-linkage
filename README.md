@@ -54,7 +54,7 @@ python data_generator.py --path Data/BIASA_200000.csv Data/BIASB_200000.csv Data
 
 2. The script calculates the Levenshtein distance between the names in the data files and the names in the reference set in order to create numerical data points.
 
-3. Then it calculates distance matrices using the [cdist](https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.distance.cdist.html) function from scipy. A custom distance function can also be used.
+3. Then it calculates distance matrices using the [cdist](https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.distance.cdist.html) function from scipy. If the custom distance function is used, then a threshold is required. The default value for threshold is 1
 
 4. The script adds labels to the data points. A label of 1 indicates that two data points have the same 'id', and a label of 0 indicates that they have different 'ids'.
 
