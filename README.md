@@ -1,6 +1,5 @@
 # Federated SVM with Scikit-learn for Entity Resolution
 
-Please make sure you set up virtual environment and Jupyterlab follows [example from NVFlare](https://github.com/NVIDIA/NVFlare/blob/main/examples/README.md)
 
 ## Additional Resources
 
