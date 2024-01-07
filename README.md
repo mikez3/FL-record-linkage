@@ -1,8 +1,5 @@
 # Federated SVM with Scikit-learn for Entity Resolution
 
-
-## Additional Resources
-
 For more detailed information, you may refer to the [Scikit-learn SVM example](https://github.com/NVIDIA/NVFlare/tree/main/examples/advanced/sklearn-svm) in the [NVIDIA NVFlare](https://github.com/NVIDIA/NVFlare/tree/main) repository. This example provides a detailed walkthrough of how to use Scikit-learn's SVM with NVFlare.
 
 ## Scikit-learn
