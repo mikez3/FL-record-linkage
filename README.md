@@ -2,42 +2,12 @@
 
 Please make sure you set up virtual environment and Jupyterlab follows [example from NVFlare](https://github.com/NVIDIA/NVFlare/blob/main/examples/README.md)
 
+## Additional Resources
 
-## Scikit-learn, tabular data, and federated SVM
-### Scikit-learn
+For more detailed information, you may refer to the [Scikit-learn SVM example](https://github.com/NVIDIA/NVFlare/tree/main/examples/advanced/sklearn-svm) in the [NVIDIA NVFlare](https://github.com/NVIDIA/NVFlare/tree/main) repository. This example provides a detailed walkthrough of how to use Scikit-learn's SVM with NVFlare.
+
+## Scikit-learn
 This application uses [Scikit-learn](https://scikit-learn.org/). [cuML](https://docs.rapids.ai/api/cuml/stable/) can also be used as backend instead of Scikit-learn.
-### Tabular data
-The data used in this application is tabular in a format that can be handled by [pandas](https://pandas.pydata.org/), such that:
-- rows correspond to data samples.
-- the first column represents the label. 
-- the other columns cover the features.    
-
-
-Each client is expected to have one local data file containing both training and validation samples. 
-To load the data for each client, the following parameters are expected by local learner:
-- data_file_path: (`string`) the full path to the client's data file. 
-- train_start: (`int`) start row index for the training set.
-- train_end: (`int`) end row index for the training set.
-- valid_start: (`int`) start row index for the validation set.
-- valid_end: (`int`) end row index for the validation set.
-
-### Federated SVM
-The machine learning algorithm used is [SVM for Classification (SVC)](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html).
-Under this setting, federated learning can be formulated in two steps:
-- local training: each client trains a local SVM model with their own data
-- global training: server collects the support vectors from all clients and 
-  trains a global SVM model based on them
-
-Unlike other iterative federated algorithms, federated SVM only involves 
-these two training steps. Hence, in the server config, we have
-```json
-"num_rounds": 2
-```
-The first round is the training round, performing local training and global aggregation. 
-Next, the global model will be sent back to clients for the second round, 
-performing model validation and local model update. 
-If this number is set to a number greater than 2, the system will report an error and exit.
-
 
 ## Data generator
 You can run the script from the command line with the following command:
@@ -62,24 +32,9 @@ python data_generator.py --path Data/BIASA_200000.csv Data/BIASB_200000.csv Data
 
 
 ## Prepare clients' configs with proper data information 
-For real-world FL applications, the config JSON files are expected to be 
-specified by each client, according to their own local data path and splits for training and validation.
-
 In this simulated study, to efficiently generate the config files for a 
-study under a particular setting, we provide a script to automate the process. 
+study under a particular setting, a script is provided to automate the process. 
 Note that manual copying and content modification can achieve the same.
-
-For an experiment with `K` clients, we split one dataset into `K+1` parts in a non-overlapping fashion: `K` clients' training data and `1` common validation data. 
-To simulate data imbalance among clients, we provided several options for client data splits by specifying how a client's data amount correlates with its ID number (from `1` to `K`):
-- Uniform
-- Linear
-- Square
-- Exponential
-
-These options can be used to simulate no data imbalance (`uniform`), 
-moderate data imbalance (`linear`), and high data imbalance (`square` for 
-larger client number e.g., `K=20`, exponential for smaller client number e.g., 
-`K=5` as it will be too aggressive for larger client numbers)
 
 This step is performed by 
 ```commandline
@@ -124,8 +79,7 @@ Below is a sample config for site-1, saved to `./jobs/sklearn_svm_3_uniform/app_
 ```
 
 ## Run experiment with FL simulator
-[FL simulator](https://nvflare.readthedocs.io/en/2.3/user_guide/fl_simulator.html) is used to simulate FL experiments or debug codes, not for real FL deployment.
-We can run the FL simulator with three clients under the uniform data split with
+We can run the [FL simulator](https://nvflare.readthedocs.io/en/2.3/user_guide/fl_simulator.html) with three clients under the uniform data split with
 ```commandline
 nvflare simulator ./jobs/sklearn_svm_3_uniform -w ./workspace -n 3 -t 3
 ```
