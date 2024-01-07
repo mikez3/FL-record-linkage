@@ -8,6 +8,9 @@ from nameparser import HumanName
 from rapidfuzz.distance import Levenshtein
 from scipy.spatial.distance import cdist
 
+import cudf
+
+
 
 def custom_distance(pointA, pointB, threshold):
     return np.count_nonzero(np.abs(pointA - pointB) <= threshold)
@@ -78,21 +81,14 @@ def add_labels(dfA, dfB):
 
 def save_to_csv(distances, labels, filename):
     
-    # Determine the directory from the filename
-    dir_name = os.path.dirname(filename)
-    
-    # Create the directory if it doesn't exist
-    os.makedirs(dir_name, exist_ok=True)
-   
-    np.savetxt(filename, distances, delimiter=',')
-    data = pd.read_csv(filename, header=None)
-    data['label'] = labels['label']
+    # Add the label column to the numpy array
+    distances_with_labels = np.column_stack([labels['label'], distances])
 
-    # Reorder the columns to put 'label' first
-    cols = ['label'] + [col for col in data.columns if col != 'label']
-    data = data.reindex(columns=cols)
+    # Convert the numpy array to a DataFrame
+    data = cudf.DataFrame(distances_with_labels)
+    # data = pd.DataFrame(distances_with_labels)
 
-    # Save the DataFrame back to the CSV file
+    # Save the DataFrame to the CSV file
     data.to_csv(filename, index=False, header=None)
 
 
