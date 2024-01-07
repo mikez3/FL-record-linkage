@@ -5,7 +5,7 @@ Please make sure you set up virtual environment and Jupyterlab follows [example 
 
 ## Scikit-learn, tabular data, and federated SVM
 ### Scikit-learn
-This application uses [Scikit-learn](https://scikit-learn.org/). You can also use [cuML](https://docs.rapids.ai/api/cuml/stable/) as backend instead of Scikit-learn.
+This application uses [Scikit-learn](https://scikit-learn.org/). [cuML](https://docs.rapids.ai/api/cuml/stable/) can also be used as backend instead of Scikit-learn.
 ### Tabular data
 The data used in this application is tabular in a format that can be handled by [pandas](https://pandas.pydata.org/), such that:
 - rows correspond to data samples.
