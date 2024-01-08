@@ -11,7 +11,6 @@ from scipy.spatial.distance import cdist
 import cudf
 
 
-
 def custom_distance(pointA, pointB, threshold):
     return np.count_nonzero(np.abs(pointA - pointB) <= threshold)
 
@@ -90,7 +89,6 @@ def save_to_csv(distances, labels, filename):
 
     # Create the directory if it does not exist
     os.makedirs(os.path.dirname(filename), exist_ok=True)
-
     # Save the DataFrame to the CSV file
     data.to_csv(filename, index=False, header=None)
 
