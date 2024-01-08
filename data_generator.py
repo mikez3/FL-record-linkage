@@ -88,6 +88,9 @@ def save_to_csv(distances, labels, filename):
     data = cudf.DataFrame(distances_with_labels)
     # data = pd.DataFrame(distances_with_labels)
 
+    # Create the directory if it does not exist
+    os.makedirs(os.path.dirname(filename), exist_ok=True)
+
     # Save the DataFrame to the CSV file
     data.to_csv(filename, index=False, header=None)
 
