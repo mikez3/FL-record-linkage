@@ -66,8 +66,10 @@ class SVMLearner(Learner):
             (x_train, y_train, train_size) = self.train_data
             self.kernel = global_param["kernel"]
             self.svm = SVC(kernel=self.kernel)
+            
             # train model
             self.svm.fit(x_train, y_train)
+
             # get support vectors
             index = self.svm.support_
             local_support_x = x_train[index]
@@ -84,6 +86,7 @@ class SVMLearner(Learner):
         support_x = global_param["support_x"]
         support_y = global_param["support_y"]
         svm_global.fit(support_x, support_y)
+        
         # validate global model
         (x_valid, y_valid, valid_size) = self.valid_data
         y_pred = svm_global.predict(x_valid)
@@ -96,10 +99,9 @@ class SVMLearner(Learner):
         precision_local = precision_score(y_valid, y_pred_local)
         recall_local = recall_score(y_valid, y_pred_local)
         auc_local = roc_auc_score(y_valid, y_pred_local)
-
         self.log_info(fl_ctx, f"AUC: {auc:.4f}, Precision: {precision:.4f}, Recall: {recall:.4f}")
-        # afto tha stalthei sto TensorBoard
-        # metrics = {"AUC": auc}
+
+        # metrics will be sent to TensorBoard
         metrics = {"global_Precision": precision, "global_Recall": recall,"global_AUC": auc, "local_Precision": precision_local, "local_Recall": recall_local, "local_AUC": auc_local}
         return metrics, svm_global
 
