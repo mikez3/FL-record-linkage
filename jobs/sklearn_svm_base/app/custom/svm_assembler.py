@@ -16,8 +16,8 @@
 from typing import Dict
 
 import numpy as np
-from sklearn.svm import SVC
-# from cuml import SVC
+# from sklearn.svm import SVC
+from cuml import SVC
 
 from nvflare.apis.dxo import DataKind
 from nvflare.apis.fl_context import FLContext
@@ -47,8 +47,10 @@ class SVMAssembler(Assembler):
                 client_model = self.collection[client]
                 support_x.append(client_model["support_x"])
                 support_y.append(client_model["support_y"])
+            
             global_x = np.concatenate(support_x)
             global_y = np.concatenate(support_y)
+            
             # perform one round of SVM to produce global model
             svm_global = SVC(kernel=self.kernel)
             svm_global.fit(global_x, global_y)

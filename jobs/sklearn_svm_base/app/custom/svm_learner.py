@@ -14,9 +14,9 @@
 
 from typing import Optional, Tuple
 
-from sklearn.metrics import roc_auc_score, precision_score, recall_score
-from sklearn.svm import SVC
-# from cuml import SVC
+from sklearn.metrics import roc_auc_score, roc_auc_score, precision_score, recall_score
+# from sklearn.svm import SVC
+from cuml import SVC
 
 from nvflare.apis.fl_context import FLContext
 from nvflare.app_common.abstract.learner_spec import Learner
@@ -90,11 +90,17 @@ class SVMLearner(Learner):
         auc = roc_auc_score(y_valid, y_pred)
         precision = precision_score(y_valid, y_pred)
         recall = recall_score(y_valid, y_pred)
-        # self.log_info(fl_ctx, f"AUC {auc:.4f}")
+
+        # validate local model - mine
+        y_pred_local = self.svm.predict(x_valid)
+        precision_local = precision_score(y_valid, y_pred_local)
+        recall_local = recall_score(y_valid, y_pred_local)
+        auc_local = roc_auc_score(y_valid, y_pred_local)
+
         self.log_info(fl_ctx, f"AUC: {auc:.4f}, Precision: {precision:.4f}, Recall: {recall:.4f}")
         # afto tha stalthei sto TensorBoard
         # metrics = {"AUC": auc}
-        metrics = {"AUC": auc, "Precision": precision, "Recall": recall}
+        metrics = {"global_Precision": precision, "global_Recall": recall,"global_AUC": auc, "local_Precision": precision_local, "local_Recall": recall_local, "local_AUC": auc_local}
         return metrics, svm_global
 
     def finalize(self, fl_ctx: FLContext) -> None:
