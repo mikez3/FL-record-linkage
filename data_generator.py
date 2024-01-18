@@ -121,6 +121,8 @@ def save_to_csv(distances, labels, filename):
 
     # Create the directory if it does not exist
     os.makedirs(os.path.dirname(filename), exist_ok=True)
+    # If data_loader.py from nvflare/app_opt/sklearn is not fixed, uncomment:
+    # data.to_csv(filename, index=False)
     data.to_csv(filename, index=False, header=None)
 
 
