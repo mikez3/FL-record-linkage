@@ -91,7 +91,7 @@ class SVMLearner(Learner):
         precision = precision_score(y_valid, y_pred)
         recall = recall_score(y_valid, y_pred)
 
-        # validate local model - mine
+        # validate local model
         y_pred_local = self.svm.predict(x_valid)
         precision_local = precision_score(y_valid, y_pred_local)
         recall_local = recall_score(y_valid, y_pred_local)
