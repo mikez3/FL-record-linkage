@@ -111,10 +111,15 @@ def assign_data_index_to_sites(
         valid_size = data_size
         train_size = data_size
 
+    print(f"Total data size: {data_size}")
+    print(f"Validation data size: {valid_size}")
+    print(f"Training data size: {train_size}")
+
     site_sizes = split_num_proportion(train_size, num_sites, split_method)
     split_data_indices = {
         "valid": {"start": 0, "end": valid_size},
     }
+    print(f"Validation data start: 0, end: {valid_size}")
     for site in range(num_sites):
         site_id = site_name_prefix + str(site + 1)
         if valid_fraction < 1.0:
@@ -124,6 +129,7 @@ def assign_data_index_to_sites(
             idx_start = sum(site_sizes[:site])
             idx_end = sum(site_sizes[: site + 1])
         split_data_indices[site_id] = {"start": idx_start, "end": idx_end}
+        print(f"Site {site_id} data start: {idx_start}, end: {idx_end}")
 
     return split_data_indices
 
