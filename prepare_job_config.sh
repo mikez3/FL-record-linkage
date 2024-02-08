@@ -6,11 +6,16 @@ then
     echo "Please check if you saved Breast Cancer dataset in ${DATASET_PATH}"
 fi
 
-valid_frac=0.1
+# For FL dataset(1/3 Test, 1/3 TrainA, 1/3 TrainB):
+valid_frac=0.3333333333
+
+# For local dataset (10%test, 10% train)
+# valid_frac=0.1
+
 echo "Generating job configs with data splits, reading from ${DATASET_PATH}"
 
 task_name="sklearn_svm"
-for site_num in 3;
+for site_num in 2;
 do
     for split_mode in uniform;
     do
