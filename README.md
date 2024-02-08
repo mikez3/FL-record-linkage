@@ -107,6 +107,10 @@ Below is a sample config for site-1, saved to `./jobs/sklearn_svm_2_uniform/app_
 }
 ```
 
+## Differential Privacy
+Differential Privacy can be incorporated using Randomized Response. This is applied to the labels of support vectors after local training and before they are sent to the server. The code for this option is currently commented out in the `/jobs/sklearn_svm_base/app/custom/svm_learner.py` file.
+
+
 ## Run experiment with FL simulator
 We can run the [FL simulator](https://nvflare.readthedocs.io/en/2.3/user_guide/fl_simulator.html) with three clients under the uniform data split with
 ```commandline
