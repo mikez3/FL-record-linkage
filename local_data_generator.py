@@ -1,3 +1,13 @@
+"""
+The main function of this module is to generate a dataset for non-Federated machine learning,
+with and without a reference set. 
+In the first case (with reference set) it uses a distance metric to calculate the distance of 
+the edit distances between the database and the reference set,
+while in the second case it uses directly the edit distances. 
+
+
+"""
+
 import os
 import argparse
 
@@ -24,8 +34,8 @@ def read_and_procese_csv(path, nrows, ref_nrows):
     dfA = dfA[['id', 'FirstName', 'LastName', 'MiddleName']].astype(str)
     dfB = dfB[['id', 'FirstName', 'LastName', 'MiddleName']].astype(str)
     if (len(path)==3):
-        print("Used",nrows, "records")
-        print("Used",ref_nrows, "names from reference set")
+        print("Using",nrows, "records")
+        print("Using",ref_nrows, "names from reference set")
         ref = pd.read_csv(path[2], names=['name'], nrows=ref_nrows)
         # Extract the first and last names from the parsed names of reference set
         ref['ParsedName'] = ref['name'].str.replace('_', ' ').apply(lambda x: HumanName(x))
@@ -44,77 +54,71 @@ def edit_distance(df, ref):
 
     for name in df.itertuples(index=False):
         # FirstName df - FirstName ref
-        edit_distances_names.append([Levenshtein.distance(name[1], nameRef) for nameRef in ref['FirstName']])
+        edit_distances_names.append([Levenshtein.distance(name.FirstName.upper(), nameRef) for nameRef in ref['FirstName']])
         # LastName df - LastName ref
-        edit_distances_lastnames.append([Levenshtein.distance(name[2], nameRef) for nameRef in ref['LastName']])
+        edit_distances_lastnames.append([Levenshtein.distance(name.LastName.upper(), nameRef) for nameRef in ref['LastName']])
         # MiddleName df - FirstName ref
-        edit_distances_middlenames_first.append([Levenshtein.distance(name[3], nameRef) for nameRef in ref['FirstName']])
+        edit_distances_middlenames_first.append([Levenshtein.distance(name.MiddleName.upper(), nameRef) for nameRef in ref['FirstName']])
         # MiddleName df - LastName ref
-        edit_distances_middlenames_last.append([Levenshtein.distance(name[3], nameRef) for nameRef in ref['LastName']])
+        edit_distances_middlenames_last.append([Levenshtein.distance(name.MiddleName.upper(), nameRef) for nameRef in ref['LastName']])
 
     edit_distances_names = np.array(edit_distances_names)
     edit_distances_lastnames = np.array(edit_distances_lastnames)
     edit_distances_middlenames_first = np.array(edit_distances_middlenames_first)
     edit_distances_middlenames_last = np.array(edit_distances_middlenames_last)
 
+    print("CALCULATED EDIT DISTANCES (DF - REF)")
     return edit_distances_names, edit_distances_lastnames, edit_distances_middlenames_first, edit_distances_middlenames_last
 
 def edit_distance_no_ref(dfA, dfB):
+    print("NOT USING REF")
     edit_distances_names = []
     edit_distances_lastnames = []
     edit_distances_middlenames = []
 
     for nameA in dfA.itertuples(index=False):
-        # FirstName df - FirstName B
-        edit_distances_names.append([Levenshtein.distance(nameA[1], nameB) for nameB in dfB['FirstName']])
-        # LastName A - LastName B
-        edit_distances_lastnames.append([Levenshtein.distance(nameA[2], nameRef) for nameRef in dfB['LastName']])
-
-        # Middlename A - Middlename B
-        edit_distances_middlenames.append([Levenshtein.distance(nameA[3], nameB) for nameB in dfB['MiddleName']])
+        for nameB in dfB.itertuples(index=False):
+            # FirstName df - FirstName B
+            edit_distances_names.append(Levenshtein.distance(nameA.FirstName.upper(), nameB.FirstName.upper()))
+            # LastName A - LastName B
+            edit_distances_lastnames.append(Levenshtein.distance(nameA.LastName.upper(), nameB.LastName.upper()))
+            # Middlename A - Middlename B
+            edit_distances_middlenames.append(Levenshtein.distance(nameA.MiddleName.upper(), nameB.MiddleName.upper()))
 
     edit_distances_names = np.array(edit_distances_names)
     edit_distances_lastnames = np.array(edit_distances_lastnames)
     edit_distances_middlenames = np.array(edit_distances_middlenames)
     
+    print("CALCULATED EDIT DISTANCES")
     return edit_distances_names, edit_distances_lastnames, edit_distances_middlenames
 
 
 def calculate_distance_matrices(metric, threshold, ref=True, *args):
     distances = []
-    if (metric != 'custom_distance'):
-        # metrics = euclidean, cityblock, seuclidean, sqeuclidean, cosine, correlation, hamming, jaccard, jensenshannon, chebyshev, canberra, braycurtis
-        if ref:
-            for edit_distances_AtoRef, edit_distances_BtoRef in args:
-                distances.append(np.array(cdist(edit_distances_AtoRef, edit_distances_BtoRef, metric=metric)).ravel())            
-
-        else:
-            for edit_distances_AtoB in args:
-                distances.append(np.array(cdist(edit_distances_AtoB, edit_distances_AtoB, metric=metric)).ravel())        
-    else:
-    # Custom distance calculator  
-        distances = []
-        for edit_dist in args:
-            distances.append(np.array([custom_distance(edit_dist[0][i], edit_dist[1][j], threshold) 
-                                    for i in range(len(edit_dist[0])) 
-                                    for j in range(len(edit_dist[1]))]).ravel()) 
-        distances = np.column_stack(distances)
+    # metrics = euclidean, cityblock, seuclidean, sqeuclidean, cosine, correlation, hamming, jaccard, jensenshannon, chebyshev, canberra, braycurtis
+    if metric == 'custom_distance':
+        metric = custom_distance
+    
+    if ref:
+        for edit_distances_AtoRef, edit_distances_BtoRef in args:
+            distances.append(np.array(cdist(edit_distances_AtoRef, edit_distances_BtoRef, metric=metric)).ravel())            
+    print("CALCULATED DISTANCE METRIC")
     return np.column_stack(distances)
 
 def add_labels(dfA, dfB):
-    # labels = pd.DataFrame((dfA['id'].values[:, None] == dfB['id'].values).astype(int).ravel(), columns=['label'])
-    labels = cudf.DataFrame((dfA['id'].values[:, None] == dfB['id'].values).astype(int).ravel(), columns=['label'])
+    labels = pd.DataFrame((dfA['id'].values[:, None] == dfB['id'].values).astype(int).ravel(), columns=['label'])
+    print("ADDED LABELS")
     return labels
 
 
 def save_to_csv(distances, labels, filename):
     
     # Add the label column to the numpy array
-    distances_with_labels = np.column_stack([labels['label'].astype(int), distances])
+    distances_with_labels = np.column_stack([labels['label'], distances])
 
     # Shuffle
-    rng = np.random.default_rng(41)
-    rng.shuffle(distances_with_labels)
+    # rng = np.random.default_rng(41)
+    # rng.shuffle(distances_with_labels)
 
     # data = pd.DataFrame(distances_with_labels)
     data = cudf.DataFrame(distances_with_labels)
@@ -129,7 +133,7 @@ def save_to_csv(distances, labels, filename):
 def main():
     parser = argparse.ArgumentParser(description='Create data points to train the model')
     parser.add_argument('--path', type=str, nargs=3, default=['Data/BIASA_200000.csv', 'Data/BIASB_200000.csv', 'Data/reference_set.csv'], help='Path of each CSV file (data and reference set)')
-    parser.add_argument('--rows', type=int, default=1000, help='Number of rows to read from each CSV file')
+    parser.add_argument('--rows', type=int, default=500, help='Number of rows to read from each CSV file')
     parser.add_argument('--refrows', type=int, default=200, help='Number of rows to read from each CSV file')
     parser.add_argument('--metric', type=str, default='cosine', help='The metric to use for distance calculation')
     parser.add_argument('--threshold', type=str, default=1, help='Threshold for the custom_distance function')
@@ -147,12 +151,18 @@ def main():
         distances = calculate_distance_matrices(args.metric, args.threshold, args.ref, (edit_distances_AtoRef_names, edit_distances_BtoRef_names), (edit_distances_AtoRef_lastnames, edit_distances_BtoRef_lastnames)\
                                                 , (edit_distances_AtoRef_middlenames_first, edit_distances_BtoRef_middlenames_first), (edit_distances_AtoRef_middlenames_last, edit_distances_BtoRef_middlenames_last))
     else:
-        edit_distances_AtoB_names, edit_distances_AtoB_lastnames, edit_distances_AtoB_middlenames\
-            = edit_distance_no_ref(dfA, dfB)
-        distances = calculate_distance_matrices(args.metric, args.threshold, args.ref, (edit_distances_AtoB_names), (edit_distances_AtoB_lastnames), (edit_distances_AtoB_middlenames))
+        edit_distances_AtoB_names, edit_distances_AtoB_lastnames, edit_distances_AtoB_middlenames = edit_distance_no_ref(dfA, dfB)
+        distances = np.column_stack((edit_distances_AtoB_names, edit_distances_AtoB_lastnames, edit_distances_AtoB_middlenames)).astype(float)
     labels = add_labels(dfA, dfB)
     save_to_csv(distances, labels, args.filename)
-    print("Created",len(distances), "data points")
+    if labels.isnull().values.any():
+        print("labels contains NaN values")
+        return 0
+
+    if np.isnan(distances).any():
+        print("distances contains NaN values")
+        return 0
+    print("Successfully created",len(distances), "data points")
 
 if __name__ == "__main__":
     main()
