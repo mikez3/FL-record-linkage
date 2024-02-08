@@ -87,10 +87,10 @@ class SVMLearner(Learner):
             # rng = np.random.default_rng()
 
             # 50% true output | 50% random
-            # first_coin_flip =  rng.choice(a = [0., 1.], p = [0.5, 0.5], size=len(local_support_y))
+            # first_coin_flip = rng.choice(a = [0., 1.], p = [0.5, 0.5], size=len(local_support_y))
             
             # 90% true output | 10% random:
-            # first_coin_flip = rng.choice(a=[0, 1], p=[0.1, 0.9], size=len(local_support_y))
+            # first_coin_flip = rng.choice(a= [0, 1], p= [0.1, 0.9], size=len(local_support_y))
 
             # second_coin_flip =  rng.choice(a = [0., 1.], p = [0.5, 0.5], size=len(local_support_y))
             # local_support_y = local_support_y*first_coin_flip+(1-first_coin_flip)*secon
