@@ -14,9 +14,10 @@
 
 from typing import Optional, Tuple
 
-from sklearn.metrics import roc_auc_score, roc_auc_score, precision_score, recall_score
-# from sklearn.svm import SVC
-from cuml import SVC
+from sklearn.metrics import precision_score, recall_score
+from sklearn.svm import SVC
+# from cuml import SVC
+import numpy as np
 
 from nvflare.apis.fl_context import FLContext
 from nvflare.app_common.abstract.learner_spec import Learner
@@ -64,16 +65,36 @@ class SVMLearner(Learner):
         if curr_round == 0:
             # only perform training on the first round
             (x_train, y_train, train_size) = self.train_data
+            # Convert labels to integers
+            y_train = y_train
             self.kernel = global_param["kernel"]
             self.svm = SVC(kernel=self.kernel)
-            
+           
             # train model
             self.svm.fit(x_train, y_train)
-
+            
             # get support vectors
             index = self.svm.support_
             local_support_x = x_train[index]
             local_support_y = y_train[index]
+
+            # add Differential Privacy via Randomized Response:
+            # 1. Flip a coin
+            # 2. If the coin is heads, answer the question truthfully
+            # 3. If the coin is tails, flip another coin
+            # 4. If the second coin is heads, answer “yes”; if it is tails, answer “no”
+
+            # rng = np.random.default_rng()
+
+            # 50% true output | 50% random
+            # first_coin_flip =  rng.choice(a = [0., 1.], p = [0.5, 0.5], size=len(local_support_y))
+            
+            # 90% true output | 10% random:
+            # first_coin_flip = rng.choice(a=[0, 1], p=[0.1, 0.9], size=len(local_support_y))
+
+            # second_coin_flip =  rng.choice(a = [0., 1.], p = [0.5, 0.5], size=len(local_support_y))
+            # local_support_y = local_support_y*first_coin_flip+(1-first_coin_flip)*secon
+
             self.params = {"support_x": local_support_x, "support_y": local_support_y}
         elif curr_round > 1:
             self.system_panic("Federated SVM only performs training for one round, system exiting.", fl_ctx)
@@ -90,19 +111,11 @@ class SVMLearner(Learner):
         # validate global model
         (x_valid, y_valid, valid_size) = self.valid_data
         y_pred = svm_global.predict(x_valid)
-        auc = roc_auc_score(y_valid, y_pred)
         precision = precision_score(y_valid, y_pred)
         recall = recall_score(y_valid, y_pred)
-
-        # validate local model
-        y_pred_local = self.svm.predict(x_valid)
-        precision_local = precision_score(y_valid, y_pred_local)
-        recall_local = recall_score(y_valid, y_pred_local)
-        auc_local = roc_auc_score(y_valid, y_pred_local)
-        self.log_info(fl_ctx, f"AUC: {auc:.4f}, Precision: {precision:.4f}, Recall: {recall:.4f}")
-
-        # metrics will be sent to TensorBoard
-        metrics = {"global_Precision": precision, "global_Recall": recall,"global_AUC": auc, "local_Precision": precision_local, "local_Recall": recall_local, "local_AUC": auc_local}
+        self.log_info(fl_ctx, f"Precision: {precision:.4f}, Recall: {recall:.4f}")
+        # this is uploaded on TensorBoard:
+        metrics = {"Precision": precision, "Recall": recall}
         return metrics, svm_global
 
     def finalize(self, fl_ctx: FLContext) -> None:
