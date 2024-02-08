@@ -16,8 +16,8 @@
 from typing import Dict
 
 import numpy as np
-# from sklearn.svm import SVC
-from cuml import SVC
+from sklearn.svm import SVC
+# from cuml import SVC
 
 from nvflare.apis.dxo import DataKind
 from nvflare.apis.fl_context import FLContext
