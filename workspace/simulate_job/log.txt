@@ -1,131 +1,109 @@
-2024-01-07 13:15:16,944 - SimulatorRunner - INFO - Create the Simulator Server.
-2024-01-07 13:15:16,945 - Cell - INFO - server: creating listener on tcp://0:37813
-2024-01-07 13:15:16,957 - Cell - INFO - server: created backbone external listener for tcp://0:37813
-2024-01-07 13:15:16,957 - ConnectorManager - INFO - 19589: Try start_listener Listener resources: {'secure': False, 'host': 'localhost'}
-2024-01-07 13:15:16,958 - nvflare.fuel.f3.sfm.conn_manager - INFO - Connector [CH00002 PASSIVE tcp://0:10123] is starting
-2024-01-07 13:15:17,459 - Cell - INFO - server: created backbone internal listener for tcp://localhost:10123
-2024-01-07 13:15:17,459 - nvflare.fuel.f3.sfm.conn_manager - INFO - Connector [CH00001 PASSIVE tcp://0:37813] is starting
-2024-01-07 13:15:17,521 - nvflare.fuel.hci.server.hci - INFO - Starting Admin Server localhost on Port 48375
-2024-01-07 13:15:17,521 - SimulatorRunner - INFO - Deploy the Apps.
-2024-01-07 13:15:17,524 - SimulatorRunner - INFO - Create the simulate clients.
-2024-01-07 13:15:17,526 - ClientManager - INFO - Client: New client site-1@192.168.1.13 joined. Sent token: e8920b79-8925-44f1-bc17-8852047cc3c0.  Total clients: 1
-2024-01-07 13:15:17,526 - FederatedClient - INFO - Successfully registered client:site-1 for project simulator_server. Token:e8920b79-8925-44f1-bc17-8852047cc3c0 SSID:
-2024-01-07 13:15:17,528 - ClientManager - INFO - Client: New client site-2@192.168.1.13 joined. Sent token: f16ae7f3-3241-4c96-89e4-928d123c307f.  Total clients: 2
-2024-01-07 13:15:17,528 - FederatedClient - INFO - Successfully registered client:site-2 for project simulator_server. Token:f16ae7f3-3241-4c96-89e4-928d123c307f SSID:
-2024-01-07 13:15:17,529 - ClientManager - INFO - Client: New client site-3@192.168.1.13 joined. Sent token: 62a6d1ed-059f-445b-8363-2960f3443414.  Total clients: 3
-2024-01-07 13:15:17,529 - FederatedClient - INFO - Successfully registered client:site-3 for project simulator_server. Token:62a6d1ed-059f-445b-8363-2960f3443414 SSID:
-2024-01-07 13:15:17,530 - SimulatorRunner - INFO - Set the client status ready.
-2024-01-07 13:15:17,530 - SimulatorRunner - INFO - Deploy and start the Server App.
-2024-01-07 13:15:17,530 - ServerCommandAgent - INFO - ServerCommandAgent cell register_request_cb: server.simulate_job
-2024-01-07 13:15:18,464 - numexpr.utils - INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
-2024-01-07 13:15:18,464 - numexpr.utils - INFO - NumExpr defaulting to 8 threads.
-2024-01-07 13:15:18,962 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job]: Server runner starting ...
-2024-01-07 13:15:18,962 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job]: starting workflow scatter_and_gather (<class 'nvflare.app_common.workflows.scatter_and_gather.ScatterAndGather'>) ...
-2024-01-07 13:15:18,962 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: Initializing ScatterAndGather workflow.
-2024-01-07 13:15:18,963 - JoblibModelParamPersistor - INFO - Initialization, sending global settings: {'kernel': 'rbf'}
-2024-01-07 13:15:18,963 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: Workflow scatter_and_gather (<class 'nvflare.app_common.workflows.scatter_and_gather.ScatterAndGather'>) started
-2024-01-07 13:15:18,963 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: Beginning ScatterAndGather training phase.
-2024-01-07 13:15:18,963 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: Round 0 started.
-2024-01-07 13:15:18,963 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: scheduled task train
-2024-01-07 13:15:19,533 - SimulatorClientRunner - INFO - Start the clients run simulation.
-2024-01-07 13:15:20,534 - SimulatorClientRunner - INFO - Simulate Run client: site-1
-2024-01-07 13:15:20,535 - SimulatorClientRunner - INFO - Simulate Run client: site-2
-2024-01-07 13:15:20,544 - SimulatorClientRunner - INFO - Simulate Run client: site-3
-2024-01-07 13:15:24,040 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-3, peer_run=simulate_job, task_name=train, task_id=d74fb34a-c368-4a45-ac55-c6fb397fc8ae]: assigned task to client site-3: name=train, id=d74fb34a-c368-4a45-ac55-c6fb397fc8ae
-2024-01-07 13:15:24,040 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-3, peer_run=simulate_job, task_name=train, task_id=d74fb34a-c368-4a45-ac55-c6fb397fc8ae]: sent task assignment to client. client_name:site-3 task_id:d74fb34a-c368-4a45-ac55-c6fb397fc8ae
-2024-01-07 13:15:24,041 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-1, peer_run=simulate_job, task_name=train, task_id=d6951eb7-70bf-4d96-a217-c28d86591d2c]: assigned task to client site-1: name=train, id=d6951eb7-70bf-4d96-a217-c28d86591d2c
-2024-01-07 13:15:24,041 - GetTaskCommand - INFO - return task to client.  client_name: site-3  task_name: train   task_id: d74fb34a-c368-4a45-ac55-c6fb397fc8ae  sharable_header_task_id: d74fb34a-c368-4a45-ac55-c6fb397fc8ae
-2024-01-07 13:15:24,041 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-1, peer_run=simulate_job, task_name=train, task_id=d6951eb7-70bf-4d96-a217-c28d86591d2c]: sent task assignment to client. client_name:site-1 task_id:d6951eb7-70bf-4d96-a217-c28d86591d2c
-2024-01-07 13:15:24,041 - GetTaskCommand - INFO - return task to client.  client_name: site-1  task_name: train   task_id: d6951eb7-70bf-4d96-a217-c28d86591d2c  sharable_header_task_id: d6951eb7-70bf-4d96-a217-c28d86591d2c
-2024-01-07 13:15:24,059 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-2, peer_run=simulate_job, task_name=train, task_id=0d822ad8-34e1-4400-966a-5f6015de575c]: assigned task to client site-2: name=train, id=0d822ad8-34e1-4400-966a-5f6015de575c
-2024-01-07 13:15:24,060 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-2, peer_run=simulate_job, task_name=train, task_id=0d822ad8-34e1-4400-966a-5f6015de575c]: sent task assignment to client. client_name:site-2 task_id:0d822ad8-34e1-4400-966a-5f6015de575c
-2024-01-07 13:15:24,060 - GetTaskCommand - INFO - return task to client.  client_name: site-2  task_name: train   task_id: 0d822ad8-34e1-4400-966a-5f6015de575c  sharable_header_task_id: 0d822ad8-34e1-4400-966a-5f6015de575c
-2024-01-07 13:15:24,614 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-1, peer_run=simulate_job]: received task_check on task d6951eb7-70bf-4d96-a217-c28d86591d2c
-2024-01-07 13:15:24,614 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-1, peer_run=simulate_job]: task d6951eb7-70bf-4d96-a217-c28d86591d2c is still good
-2024-01-07 13:15:24,617 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-1, peer_run=simulate_job]: got result from client site-1 for task: name=train, id=d6951eb7-70bf-4d96-a217-c28d86591d2c
-2024-01-07 13:15:24,617 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-1, peer_run=simulate_job, peer_rc=OK, task_name=train, task_id=d6951eb7-70bf-4d96-a217-c28d86591d2c]: Contribution from site-1 ACCEPTED by the aggregator at round 0.
-2024-01-07 13:15:24,618 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-1, peer_run=simulate_job, peer_rc=OK, task_name=train, task_id=d6951eb7-70bf-4d96-a217-c28d86591d2c]: finished processing client result by scatter_and_gather
-2024-01-07 13:15:24,618 - SubmitUpdateCommand - INFO - submit_update process. client_name:site-1   task_id:d6951eb7-70bf-4d96-a217-c28d86591d2c
-2024-01-07 13:15:25,402 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-3, peer_run=simulate_job]: received task_check on task d74fb34a-c368-4a45-ac55-c6fb397fc8ae
-2024-01-07 13:15:25,402 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-3, peer_run=simulate_job]: task d74fb34a-c368-4a45-ac55-c6fb397fc8ae is still good
-2024-01-07 13:15:25,404 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-3, peer_run=simulate_job]: got result from client site-3 for task: name=train, id=d74fb34a-c368-4a45-ac55-c6fb397fc8ae
-2024-01-07 13:15:25,405 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-3, peer_run=simulate_job, peer_rc=OK, task_name=train, task_id=d74fb34a-c368-4a45-ac55-c6fb397fc8ae]: Contribution from site-3 ACCEPTED by the aggregator at round 0.
-2024-01-07 13:15:25,405 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-3, peer_run=simulate_job, peer_rc=OK, task_name=train, task_id=d74fb34a-c368-4a45-ac55-c6fb397fc8ae]: finished processing client result by scatter_and_gather
-2024-01-07 13:15:25,405 - SubmitUpdateCommand - INFO - submit_update process. client_name:site-3   task_id:d74fb34a-c368-4a45-ac55-c6fb397fc8ae
-2024-01-07 13:15:25,430 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-2, peer_run=simulate_job]: received task_check on task 0d822ad8-34e1-4400-966a-5f6015de575c
-2024-01-07 13:15:25,430 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-2, peer_run=simulate_job]: task 0d822ad8-34e1-4400-966a-5f6015de575c is still good
-2024-01-07 13:15:25,432 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-2, peer_run=simulate_job]: got result from client site-2 for task: name=train, id=0d822ad8-34e1-4400-966a-5f6015de575c
-2024-01-07 13:15:25,433 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-2, peer_run=simulate_job, peer_rc=OK, task_name=train, task_id=0d822ad8-34e1-4400-966a-5f6015de575c]: Contribution from site-2 ACCEPTED by the aggregator at round 0.
-2024-01-07 13:15:25,433 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-2, peer_run=simulate_job, peer_rc=OK, task_name=train, task_id=0d822ad8-34e1-4400-966a-5f6015de575c]: finished processing client result by scatter_and_gather
-2024-01-07 13:15:25,433 - SubmitUpdateCommand - INFO - submit_update process. client_name:site-2   task_id:0d822ad8-34e1-4400-966a-5f6015de575c
-2024-01-07 13:15:25,471 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: task train exit with status TaskCompletionStatus.OK
-2024-01-07 13:15:25,971 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: Start aggregation.
-2024-01-07 13:15:25,972 - CollectAndAssembleAggregator - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: aggregating 3 update(s) at round 0
-2024-01-07 13:15:25,980 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: End aggregation.
-2024-01-07 13:15:25,980 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: Start persist model on server.
-2024-01-07 13:15:25,980 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: End persist model on server.
-2024-01-07 13:15:25,980 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: Round 0 finished.
-2024-01-07 13:15:25,980 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: Round 1 started.
-2024-01-07 13:15:25,981 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: scheduled task train
-2024-01-07 13:15:25,990 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-2, peer_run=simulate_job, task_name=train, task_id=e884595e-ab42-495e-915c-7a063396ca4e]: assigned task to client site-2: name=train, id=e884595e-ab42-495e-915c-7a063396ca4e
-2024-01-07 13:15:25,990 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-2, peer_run=simulate_job, task_name=train, task_id=e884595e-ab42-495e-915c-7a063396ca4e]: sent task assignment to client. client_name:site-2 task_id:e884595e-ab42-495e-915c-7a063396ca4e
-2024-01-07 13:15:25,990 - GetTaskCommand - INFO - return task to client.  client_name: site-2  task_name: train   task_id: e884595e-ab42-495e-915c-7a063396ca4e  sharable_header_task_id: e884595e-ab42-495e-915c-7a063396ca4e
-2024-01-07 13:15:26,245 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-1, peer_run=simulate_job, task_name=train, task_id=6ce657c1-a923-4360-8242-4ec2bd1a3adc]: assigned task to client site-1: name=train, id=6ce657c1-a923-4360-8242-4ec2bd1a3adc
-2024-01-07 13:15:26,246 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-1, peer_run=simulate_job, task_name=train, task_id=6ce657c1-a923-4360-8242-4ec2bd1a3adc]: sent task assignment to client. client_name:site-1 task_id:6ce657c1-a923-4360-8242-4ec2bd1a3adc
-2024-01-07 13:15:26,246 - GetTaskCommand - INFO - return task to client.  client_name: site-1  task_name: train   task_id: 6ce657c1-a923-4360-8242-4ec2bd1a3adc  sharable_header_task_id: 6ce657c1-a923-4360-8242-4ec2bd1a3adc
-2024-01-07 13:15:26,327 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-2, peer_run=simulate_job]: received task_check on task e884595e-ab42-495e-915c-7a063396ca4e
-2024-01-07 13:15:26,327 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-2, peer_run=simulate_job]: task e884595e-ab42-495e-915c-7a063396ca4e is still good
-2024-01-07 13:15:26,329 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-2, peer_run=simulate_job]: got result from client site-2 for task: name=train, id=e884595e-ab42-495e-915c-7a063396ca4e
-2024-01-07 13:15:26,329 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-2, peer_run=simulate_job, peer_rc=OK, task_name=train, task_id=e884595e-ab42-495e-915c-7a063396ca4e]: Contribution from site-2 ACCEPTED by the aggregator at round 1.
-2024-01-07 13:15:26,329 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-2, peer_run=simulate_job, peer_rc=OK, task_name=train, task_id=e884595e-ab42-495e-915c-7a063396ca4e]: finished processing client result by scatter_and_gather
-2024-01-07 13:15:26,330 - SubmitUpdateCommand - INFO - submit_update process. client_name:site-2   task_id:e884595e-ab42-495e-915c-7a063396ca4e
-2024-01-07 13:15:26,470 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-3, peer_run=simulate_job, task_name=train, task_id=07d6c803-9a86-47a0-bd35-27863229708b]: assigned task to client site-3: name=train, id=07d6c803-9a86-47a0-bd35-27863229708b
-2024-01-07 13:15:26,470 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-3, peer_run=simulate_job, task_name=train, task_id=07d6c803-9a86-47a0-bd35-27863229708b]: sent task assignment to client. client_name:site-3 task_id:07d6c803-9a86-47a0-bd35-27863229708b
-2024-01-07 13:15:26,470 - GetTaskCommand - INFO - return task to client.  client_name: site-3  task_name: train   task_id: 07d6c803-9a86-47a0-bd35-27863229708b  sharable_header_task_id: 07d6c803-9a86-47a0-bd35-27863229708b
-2024-01-07 13:15:26,585 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-1, peer_run=simulate_job]: received task_check on task 6ce657c1-a923-4360-8242-4ec2bd1a3adc
-2024-01-07 13:15:26,585 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-1, peer_run=simulate_job]: task 6ce657c1-a923-4360-8242-4ec2bd1a3adc is still good
-2024-01-07 13:15:26,587 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-1, peer_run=simulate_job]: got result from client site-1 for task: name=train, id=6ce657c1-a923-4360-8242-4ec2bd1a3adc
-2024-01-07 13:15:26,588 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-1, peer_run=simulate_job, peer_rc=OK, task_name=train, task_id=6ce657c1-a923-4360-8242-4ec2bd1a3adc]: Contribution from site-1 ACCEPTED by the aggregator at round 1.
-2024-01-07 13:15:26,588 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-1, peer_run=simulate_job, peer_rc=OK, task_name=train, task_id=6ce657c1-a923-4360-8242-4ec2bd1a3adc]: finished processing client result by scatter_and_gather
-2024-01-07 13:15:26,588 - SubmitUpdateCommand - INFO - submit_update process. client_name:site-1   task_id:6ce657c1-a923-4360-8242-4ec2bd1a3adc
-2024-01-07 13:15:26,817 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-3, peer_run=simulate_job]: received task_check on task 07d6c803-9a86-47a0-bd35-27863229708b
-2024-01-07 13:15:26,817 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-3, peer_run=simulate_job]: task 07d6c803-9a86-47a0-bd35-27863229708b is still good
-2024-01-07 13:15:26,819 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-3, peer_run=simulate_job]: got result from client site-3 for task: name=train, id=07d6c803-9a86-47a0-bd35-27863229708b
-2024-01-07 13:15:26,820 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-3, peer_run=simulate_job, peer_rc=OK, task_name=train, task_id=07d6c803-9a86-47a0-bd35-27863229708b]: Contribution from site-3 ACCEPTED by the aggregator at round 1.
-2024-01-07 13:15:26,820 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-3, peer_run=simulate_job, peer_rc=OK, task_name=train, task_id=07d6c803-9a86-47a0-bd35-27863229708b]: finished processing client result by scatter_and_gather
-2024-01-07 13:15:26,820 - SubmitUpdateCommand - INFO - submit_update process. client_name:site-3   task_id:07d6c803-9a86-47a0-bd35-27863229708b
-2024-01-07 13:15:26,974 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: task train exit with status TaskCompletionStatus.OK
-2024-01-07 13:15:26,982 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: Start aggregation.
-2024-01-07 13:15:26,983 - CollectAndAssembleAggregator - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: aggregating 3 update(s) at round 1
-2024-01-07 13:15:26,984 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: End aggregation.
-2024-01-07 13:15:26,984 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: Start persist model on server.
-2024-01-07 13:15:26,985 - JoblibModelParamPersistor - INFO - Saving received model to /home/mike/ΠΤΥΧΙΑΚΗ/NVFlare_project/my_nvflare_example/FL-record-linkege/workspace/simulate_job/app_server/model_param.joblib
-2024-01-07 13:15:26,988 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: End persist model on server.
-2024-01-07 13:15:26,988 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: Round 1 finished.
-2024-01-07 13:15:26,988 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: Finished ScatterAndGather Training.
-2024-01-07 13:15:26,988 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: Workflow: scatter_and_gather finalizing ...
-2024-01-07 13:15:27,147 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-1, peer_run=simulate_job]: no current workflow - asked client to try again later
-2024-01-07 13:15:27,379 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-3, peer_run=simulate_job]: no current workflow - asked client to try again later
-2024-01-07 13:15:27,392 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-2, peer_run=simulate_job]: no current workflow - asked client to try again later
-2024-01-07 13:15:27,451 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-2, peer_run=simulate_job]: no current workflow - asked client to try again later
-2024-01-07 13:15:27,476 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: ABOUT_TO_END_RUN fired
-2024-01-07 13:15:27,476 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: END_RUN fired
-2024-01-07 13:15:27,477 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: Server runner finished.
-2024-01-07 13:15:27,657 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-1, peer_run=simulate_job]: server runner is finalizing - asked client to end the run
-2024-01-07 13:15:27,657 - GetTaskCommand - INFO - return task to client.  client_name: site-1  task_name: __end_run__   task_id:   sharable_header_task_id: 
-2024-01-07 13:15:27,888 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-3, peer_run=simulate_job]: server runner is finalizing - asked client to end the run
-2024-01-07 13:15:27,889 - GetTaskCommand - INFO - return task to client.  client_name: site-3  task_name: __end_run__   task_id:   sharable_header_task_id: 
-2024-01-07 13:15:27,957 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-2, peer_run=simulate_job]: server runner is finalizing - asked client to end the run
-2024-01-07 13:15:27,958 - GetTaskCommand - INFO - return task to client.  client_name: site-2  task_name: __end_run__   task_id:   sharable_header_task_id: 
-2024-01-07 13:15:27,959 - FederatedClient - INFO - Shutting down client run: site-1
-2024-01-07 13:15:27,960 - FederatedClient - INFO - Shutting down client run: site-2
-2024-01-07 13:15:27,960 - FederatedClient - INFO - Shutting down client run: site-3
-2024-01-07 13:15:27,960 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: asked to abort - triggered abort_signal to stop the RUN
-2024-01-07 13:15:27,969 - SimulatorServer - INFO - Server app stopped.
+2024-02-08 14:57:10,437 - SimulatorRunner - INFO - Create the Simulator Server.
+2024-02-08 14:57:10,438 - Cell - INFO - server: creating listener on tcp://0:34979
+2024-02-08 14:57:10,449 - Cell - INFO - server: created backbone external listener for tcp://0:34979
+2024-02-08 14:57:10,449 - ConnectorManager - INFO - 57149: Try start_listener Listener resources: {'secure': False, 'host': 'localhost'}
+2024-02-08 14:57:10,449 - nvflare.fuel.f3.sfm.conn_manager - INFO - Connector [CH00002 PASSIVE tcp://0:29831] is starting
+2024-02-08 14:57:10,950 - Cell - INFO - server: created backbone internal listener for tcp://localhost:29831
+2024-02-08 14:57:10,951 - nvflare.fuel.f3.sfm.conn_manager - INFO - Connector [CH00001 PASSIVE tcp://0:34979] is starting
+2024-02-08 14:57:11,042 - nvflare.fuel.hci.server.hci - INFO - Starting Admin Server localhost on Port 56367
+2024-02-08 14:57:11,042 - SimulatorRunner - INFO - Deploy the Apps.
+2024-02-08 14:57:11,045 - SimulatorRunner - INFO - Create the simulate clients.
+2024-02-08 14:57:11,046 - ClientManager - INFO - Client: New client site-1@192.168.1.13 joined. Sent token: 319e3562-cbdc-474c-909d-4b8881ab42a1.  Total clients: 1
+2024-02-08 14:57:11,047 - FederatedClient - INFO - Successfully registered client:site-1 for project simulator_server. Token:319e3562-cbdc-474c-909d-4b8881ab42a1 SSID:
+2024-02-08 14:57:11,048 - ClientManager - INFO - Client: New client site-2@192.168.1.13 joined. Sent token: ea77c70d-fee3-44b0-8c48-0657cfae5683.  Total clients: 2
+2024-02-08 14:57:11,048 - FederatedClient - INFO - Successfully registered client:site-2 for project simulator_server. Token:ea77c70d-fee3-44b0-8c48-0657cfae5683 SSID:
+2024-02-08 14:57:11,048 - SimulatorRunner - INFO - Set the client status ready.
+2024-02-08 14:57:11,048 - SimulatorRunner - INFO - Deploy and start the Server App.
+2024-02-08 14:57:11,049 - ServerCommandAgent - INFO - ServerCommandAgent cell register_request_cb: server.simulate_job
+2024-02-08 14:57:11,996 - numexpr.utils - INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+2024-02-08 14:57:11,996 - numexpr.utils - INFO - NumExpr defaulting to 8 threads.
+2024-02-08 14:57:12,520 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job]: Server runner starting ...
+2024-02-08 14:57:12,521 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job]: starting workflow scatter_and_gather (<class 'nvflare.app_common.workflows.scatter_and_gather.ScatterAndGather'>) ...
+2024-02-08 14:57:12,521 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: Initializing ScatterAndGather workflow.
+2024-02-08 14:57:12,521 - JoblibModelParamPersistor - INFO - Initialization, sending global settings: {'kernel': 'rbf'}
+2024-02-08 14:57:12,521 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: Workflow scatter_and_gather (<class 'nvflare.app_common.workflows.scatter_and_gather.ScatterAndGather'>) started
+2024-02-08 14:57:12,521 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: Beginning ScatterAndGather training phase.
+2024-02-08 14:57:12,521 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: Round 0 started.
+2024-02-08 14:57:12,522 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: scheduled task train
+2024-02-08 14:57:13,052 - SimulatorClientRunner - INFO - Start the clients run simulation.
+2024-02-08 14:57:14,054 - SimulatorClientRunner - INFO - Simulate Run client: site-1
+2024-02-08 14:57:14,054 - SimulatorClientRunner - INFO - Simulate Run client: site-2
+2024-02-08 14:57:17,171 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-1, peer_run=simulate_job, task_name=train, task_id=b8e697d1-1510-496b-8222-9a91b29e8fad]: assigned task to client site-1: name=train, id=b8e697d1-1510-496b-8222-9a91b29e8fad
+2024-02-08 14:57:17,171 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-1, peer_run=simulate_job, task_name=train, task_id=b8e697d1-1510-496b-8222-9a91b29e8fad]: sent task assignment to client. client_name:site-1 task_id:b8e697d1-1510-496b-8222-9a91b29e8fad
+2024-02-08 14:57:17,171 - GetTaskCommand - INFO - return task to client.  client_name: site-1  task_name: train   task_id: b8e697d1-1510-496b-8222-9a91b29e8fad  sharable_header_task_id: b8e697d1-1510-496b-8222-9a91b29e8fad
+2024-02-08 14:57:17,174 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-2, peer_run=simulate_job, task_name=train, task_id=62644d89-af0a-4cc8-811e-121e37de3ff9]: assigned task to client site-2: name=train, id=62644d89-af0a-4cc8-811e-121e37de3ff9
+2024-02-08 14:57:17,174 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-2, peer_run=simulate_job, task_name=train, task_id=62644d89-af0a-4cc8-811e-121e37de3ff9]: sent task assignment to client. client_name:site-2 task_id:62644d89-af0a-4cc8-811e-121e37de3ff9
+2024-02-08 14:57:17,174 - GetTaskCommand - INFO - return task to client.  client_name: site-2  task_name: train   task_id: 62644d89-af0a-4cc8-811e-121e37de3ff9  sharable_header_task_id: 62644d89-af0a-4cc8-811e-121e37de3ff9
+2024-02-08 14:57:17,903 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-2, peer_run=simulate_job]: received task_check on task 62644d89-af0a-4cc8-811e-121e37de3ff9
+2024-02-08 14:57:17,903 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-2, peer_run=simulate_job]: task 62644d89-af0a-4cc8-811e-121e37de3ff9 is still good
+2024-02-08 14:57:17,905 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-2, peer_run=simulate_job]: got result from client site-2 for task: name=train, id=62644d89-af0a-4cc8-811e-121e37de3ff9
+2024-02-08 14:57:17,906 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-2, peer_run=simulate_job, peer_rc=OK, task_name=train, task_id=62644d89-af0a-4cc8-811e-121e37de3ff9]: Contribution from site-2 ACCEPTED by the aggregator at round 0.
+2024-02-08 14:57:17,906 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-2, peer_run=simulate_job, peer_rc=OK, task_name=train, task_id=62644d89-af0a-4cc8-811e-121e37de3ff9]: finished processing client result by scatter_and_gather
+2024-02-08 14:57:17,906 - SubmitUpdateCommand - INFO - submit_update process. client_name:site-2   task_id:62644d89-af0a-4cc8-811e-121e37de3ff9
+2024-02-08 14:57:18,005 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-1, peer_run=simulate_job]: received task_check on task b8e697d1-1510-496b-8222-9a91b29e8fad
+2024-02-08 14:57:18,005 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-1, peer_run=simulate_job]: task b8e697d1-1510-496b-8222-9a91b29e8fad is still good
+2024-02-08 14:57:18,007 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-1, peer_run=simulate_job]: got result from client site-1 for task: name=train, id=b8e697d1-1510-496b-8222-9a91b29e8fad
+2024-02-08 14:57:18,008 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-1, peer_run=simulate_job, peer_rc=OK, task_name=train, task_id=b8e697d1-1510-496b-8222-9a91b29e8fad]: Contribution from site-1 ACCEPTED by the aggregator at round 0.
+2024-02-08 14:57:18,008 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-1, peer_run=simulate_job, peer_rc=OK, task_name=train, task_id=b8e697d1-1510-496b-8222-9a91b29e8fad]: finished processing client result by scatter_and_gather
+2024-02-08 14:57:18,008 - SubmitUpdateCommand - INFO - submit_update process. client_name:site-1   task_id:b8e697d1-1510-496b-8222-9a91b29e8fad
+2024-02-08 14:57:18,028 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: task train exit with status TaskCompletionStatus.OK
+2024-02-08 14:57:18,529 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: Start aggregation.
+2024-02-08 14:57:18,529 - CollectAndAssembleAggregator - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: aggregating 2 update(s) at round 0
+2024-02-08 14:57:18,533 - CollectAndAssembleAggregator - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: Type of model: <class 'dict'>
+2024-02-08 14:57:18,533 - CollectAndAssembleAggregator - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: Size of model: 2
+2024-02-08 14:57:18,533 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: End aggregation.
+2024-02-08 14:57:18,534 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: Start persist model on server.
+2024-02-08 14:57:18,534 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: End persist model on server.
+2024-02-08 14:57:18,534 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: Round 0 finished.
+2024-02-08 14:57:18,534 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: Round 1 started.
+2024-02-08 14:57:18,534 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: scheduled task train
+2024-02-08 14:57:18,563 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-1, peer_run=simulate_job, task_name=train, task_id=c1c17b69-fb52-4478-8353-8b6a453fcd43]: assigned task to client site-1: name=train, id=c1c17b69-fb52-4478-8353-8b6a453fcd43
+2024-02-08 14:57:18,564 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-1, peer_run=simulate_job, task_name=train, task_id=c1c17b69-fb52-4478-8353-8b6a453fcd43]: sent task assignment to client. client_name:site-1 task_id:c1c17b69-fb52-4478-8353-8b6a453fcd43
+2024-02-08 14:57:18,564 - GetTaskCommand - INFO - return task to client.  client_name: site-1  task_name: train   task_id: c1c17b69-fb52-4478-8353-8b6a453fcd43  sharable_header_task_id: c1c17b69-fb52-4478-8353-8b6a453fcd43
+2024-02-08 14:57:18,922 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-1, peer_run=simulate_job]: received task_check on task c1c17b69-fb52-4478-8353-8b6a453fcd43
+2024-02-08 14:57:18,922 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-1, peer_run=simulate_job]: task c1c17b69-fb52-4478-8353-8b6a453fcd43 is still good
+2024-02-08 14:57:18,925 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-1, peer_run=simulate_job]: got result from client site-1 for task: name=train, id=c1c17b69-fb52-4478-8353-8b6a453fcd43
+2024-02-08 14:57:18,925 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-1, peer_run=simulate_job, peer_rc=OK, task_name=train, task_id=c1c17b69-fb52-4478-8353-8b6a453fcd43]: Contribution from site-1 ACCEPTED by the aggregator at round 1.
+2024-02-08 14:57:18,925 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-1, peer_run=simulate_job, peer_rc=OK, task_name=train, task_id=c1c17b69-fb52-4478-8353-8b6a453fcd43]: finished processing client result by scatter_and_gather
+2024-02-08 14:57:18,925 - SubmitUpdateCommand - INFO - submit_update process. client_name:site-1   task_id:c1c17b69-fb52-4478-8353-8b6a453fcd43
+2024-02-08 14:57:18,971 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-2, peer_run=simulate_job, task_name=train, task_id=1a3c57e3-b2f4-448d-ac6c-6b4e4440d668]: assigned task to client site-2: name=train, id=1a3c57e3-b2f4-448d-ac6c-6b4e4440d668
+2024-02-08 14:57:18,971 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-2, peer_run=simulate_job, task_name=train, task_id=1a3c57e3-b2f4-448d-ac6c-6b4e4440d668]: sent task assignment to client. client_name:site-2 task_id:1a3c57e3-b2f4-448d-ac6c-6b4e4440d668
+2024-02-08 14:57:18,971 - GetTaskCommand - INFO - return task to client.  client_name: site-2  task_name: train   task_id: 1a3c57e3-b2f4-448d-ac6c-6b4e4440d668  sharable_header_task_id: 1a3c57e3-b2f4-448d-ac6c-6b4e4440d668
+2024-02-08 14:57:19,314 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-2, peer_run=simulate_job]: received task_check on task 1a3c57e3-b2f4-448d-ac6c-6b4e4440d668
+2024-02-08 14:57:19,314 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-2, peer_run=simulate_job]: task 1a3c57e3-b2f4-448d-ac6c-6b4e4440d668 is still good
+2024-02-08 14:57:19,316 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-2, peer_run=simulate_job]: got result from client site-2 for task: name=train, id=1a3c57e3-b2f4-448d-ac6c-6b4e4440d668
+2024-02-08 14:57:19,317 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-2, peer_run=simulate_job, peer_rc=OK, task_name=train, task_id=1a3c57e3-b2f4-448d-ac6c-6b4e4440d668]: Contribution from site-2 ACCEPTED by the aggregator at round 1.
+2024-02-08 14:57:19,317 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-2, peer_run=simulate_job, peer_rc=OK, task_name=train, task_id=1a3c57e3-b2f4-448d-ac6c-6b4e4440d668]: finished processing client result by scatter_and_gather
+2024-02-08 14:57:19,317 - SubmitUpdateCommand - INFO - submit_update process. client_name:site-2   task_id:1a3c57e3-b2f4-448d-ac6c-6b4e4440d668
+2024-02-08 14:57:19,531 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: task train exit with status TaskCompletionStatus.OK
+2024-02-08 14:57:19,536 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: Start aggregation.
+2024-02-08 14:57:19,536 - CollectAndAssembleAggregator - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: aggregating 2 update(s) at round 1
+2024-02-08 14:57:19,537 - CollectAndAssembleAggregator - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: Type of model: <class 'dict'>
+2024-02-08 14:57:19,537 - CollectAndAssembleAggregator - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: Size of model: 2
+2024-02-08 14:57:19,538 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: End aggregation.
+2024-02-08 14:57:19,539 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: Start persist model on server.
+2024-02-08 14:57:19,539 - JoblibModelParamPersistor - INFO - Saving received model to /home/mike/ΠΤΥΧΙΑΚΗ/NVFlare_project/my_nvflare_example/FL-record-linkage/workspace/simulate_job/app_server/model_param.joblib
+2024-02-08 14:57:19,542 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: End persist model on server.
+2024-02-08 14:57:19,543 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: Round 1 finished.
+2024-02-08 14:57:19,543 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: Finished ScatterAndGather Training.
+2024-02-08 14:57:19,543 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: Workflow: scatter_and_gather finalizing ...
+2024-02-08 14:57:19,876 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-2, peer_run=simulate_job]: no current workflow - asked client to try again later
+2024-02-08 14:57:19,990 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-1, peer_run=simulate_job]: no current workflow - asked client to try again later
+2024-02-08 14:57:20,032 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: ABOUT_TO_END_RUN fired
+2024-02-08 14:57:20,032 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: END_RUN fired
+2024-02-08 14:57:20,033 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: Server runner finished.
+2024-02-08 14:57:20,044 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-1, peer_run=simulate_job]: server runner is finalizing - asked client to end the run
+2024-02-08 14:57:20,044 - GetTaskCommand - INFO - return task to client.  client_name: site-1  task_name: __end_run__   task_id:   sharable_header_task_id: 
+2024-02-08 14:57:20,386 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-2, peer_run=simulate_job]: server runner is finalizing - asked client to end the run
+2024-02-08 14:57:20,386 - GetTaskCommand - INFO - return task to client.  client_name: site-2  task_name: __end_run__   task_id:   sharable_header_task_id: 
+2024-02-08 14:57:20,392 - FederatedClient - INFO - Shutting down client run: site-1
+2024-02-08 14:57:20,393 - FederatedClient - INFO - Shutting down client run: site-2
+2024-02-08 14:57:20,395 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: asked to abort - triggered abort_signal to stop the RUN
+2024-02-08 14:57:21,529 - SimulatorServer - INFO - Server app stopped.
 
 
-2024-01-07 13:15:28,038 - nvflare.fuel.hci.server.hci - INFO - Admin Server localhost on Port 48375 shutdown!
-2024-01-07 13:15:28,039 - SimulatorServer - INFO - shutting down server
-2024-01-07 13:15:28,039 - SimulatorServer - INFO - canceling sync locks
-2024-01-07 13:15:28,039 - SimulatorServer - INFO - server off
-2024-01-07 13:15:31,480 - MPM - INFO - MPM: Good Bye!
+2024-02-08 14:57:21,556 - nvflare.fuel.hci.server.hci - INFO - Admin Server localhost on Port 56367 shutdown!
+2024-02-08 14:57:21,556 - SimulatorServer - INFO - shutting down server
+2024-02-08 14:57:21,556 - SimulatorServer - INFO - canceling sync locks
+2024-02-08 14:57:21,557 - SimulatorServer - INFO - server off
+2024-02-08 14:57:24,967 - MPM - INFO - MPM: Good Bye!

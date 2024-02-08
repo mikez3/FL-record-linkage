@@ -22,10 +22,10 @@
       "path": "svm_learner.SVMLearner",
       "args": {
         "data_path": "/tmp/dataset/data.csv",
-        "train_start": 100000,
-        "train_end": 400000,
+        "train_start": 250000,
+        "train_end": 500000,
         "valid_start": 0,
-        "valid_end": 100000
+        "valid_end": 250000
       }
     }
   ]

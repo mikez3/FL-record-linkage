@@ -1,45 +1,45 @@
-2024-01-07 13:15:21,557 - ClientTaskWorker - INFO - ClientTaskWorker started to run
-2024-01-07 13:15:21,611 - Cell - INFO - site-1.simulate_job: created backbone external connector to tcp://localhost:37813
-2024-01-07 13:15:21,612 - nvflare.fuel.f3.sfm.conn_manager - INFO - Connector [CH00001 ACTIVE tcp://localhost:37813] is starting
-2024-01-07 13:15:22,566 - numexpr.utils - INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
-2024-01-07 13:15:22,566 - numexpr.utils - INFO - NumExpr defaulting to 8 threads.
-2024-01-07 13:15:23,261 - SKLearnExecutor - INFO - [identity=site-1, run=simulate_job]: Client site-1 initialized with configs: 
- Namespace(job_folder='/home/mike/ΠΤΥΧΙΑΚΗ/NVFlare_project/my_nvflare_example/FL-record-linkege/./jobs/sklearn_svm_3_uniform', workspace='/home/mike/ΠΤΥΧΙΑΚΗ/NVFlare_project/my_nvflare_example/FL-record-linkege/./workspace', clients=None, n_clients=3, threads=3, gpu=None, max_clients=100, set=[], log_config=None, config_folder='config', job_id='simulate_job', client_config='config/config_fed_client.json', env='config/environment.json', server_config='config/config_fed_server.json', client_name='site-1', token='e8920b79-8925-44f1-bc17-8852047cc3c0')
-2024-01-07 13:15:24,037 - ClientRunner - INFO - [identity=site-1, run=simulate_job]: client runner started
-2024-01-07 13:15:24,037 - ClientTaskWorker - INFO - Initialize ClientRunner for client: site-1
-2024-01-07 13:15:24,042 - Communicator - INFO - Received from simulator_server server  (579 Bytes). getTask: train time: 0.002987384796142578 seconds
-2024-01-07 13:15:24,042 - FederatedClient - INFO - pull_task completed. Task name:train Status:True 
-2024-01-07 13:15:24,042 - ClientRunner - INFO - [identity=site-1, run=simulate_job, peer=simulator_server, peer_run=simulate_job]: got task assignment: name=train, id=d6951eb7-70bf-4d96-a217-c28d86591d2c
-2024-01-07 13:15:24,043 - ClientRunner - INFO - [identity=site-1, run=simulate_job, peer=simulator_server, peer_run=simulate_job, task_name=train, task_id=d6951eb7-70bf-4d96-a217-c28d86591d2c]: invoking task executor SKLearnExecutor
-2024-01-07 13:15:24,043 - SKLearnExecutor - INFO - [identity=site-1, run=simulate_job]: Client trainer got task: train
-2024-01-07 13:15:24,043 - SKLearnExecutor - INFO - [identity=site-1, run=simulate_job]: Client site-1 perform local train
-2024-01-07 13:15:24,613 - SKLearnExecutor - INFO - [identity=site-1, run=simulate_job]: Local epochs finished. Returning shareable
-2024-01-07 13:15:24,613 - ClientRunner - INFO - [identity=site-1, run=simulate_job, peer=simulator_server, peer_run=simulate_job, task_name=train, task_id=d6951eb7-70bf-4d96-a217-c28d86591d2c]: finished processing task
-2024-01-07 13:15:24,613 - ClientRunner - INFO - [identity=site-1, run=simulate_job, peer=simulator_server, peer_run=simulate_job, task_name=train, task_id=d6951eb7-70bf-4d96-a217-c28d86591d2c]: try #1: sending task result to server
-2024-01-07 13:15:24,613 - ClientRunner - INFO - [identity=site-1, run=simulate_job, peer=simulator_server, peer_run=simulate_job, task_name=train, task_id=d6951eb7-70bf-4d96-a217-c28d86591d2c]: checking task ...
-2024-01-07 13:15:24,615 - ClientRunner - INFO - [identity=site-1, run=simulate_job, peer=simulator_server, peer_run=simulate_job, task_name=train, task_id=d6951eb7-70bf-4d96-a217-c28d86591d2c]: start to send task result to server
-2024-01-07 13:15:24,615 - FederatedClient - INFO - Starting to push execute result.
-2024-01-07 13:15:24,619 - Communicator - INFO -  SubmitUpdate size: 3939 Bytes. time: 0.00304412841796875 seconds
-2024-01-07 13:15:24,619 - ClientRunner - INFO - [identity=site-1, run=simulate_job, peer=simulator_server, peer_run=simulate_job, task_name=train, task_id=d6951eb7-70bf-4d96-a217-c28d86591d2c]: task result sent to server
-2024-01-07 13:15:24,619 - ClientTaskWorker - INFO - Finished one task run for client: site-1 interval: 0.05 task_processed: True
-2024-01-07 13:15:26,247 - Communicator - INFO - Received from simulator_server server  (9496 Bytes). getTask: train time: 0.0019221305847167969 seconds
-2024-01-07 13:15:26,248 - FederatedClient - INFO - pull_task completed. Task name:train Status:True 
-2024-01-07 13:15:26,248 - ClientRunner - INFO - [identity=site-1, run=simulate_job, peer=simulator_server, peer_run=simulate_job]: got task assignment: name=train, id=6ce657c1-a923-4360-8242-4ec2bd1a3adc
-2024-01-07 13:15:26,248 - ClientRunner - INFO - [identity=site-1, run=simulate_job, peer=simulator_server, peer_run=simulate_job, task_name=train, task_id=6ce657c1-a923-4360-8242-4ec2bd1a3adc]: invoking task executor SKLearnExecutor
-2024-01-07 13:15:26,248 - SKLearnExecutor - INFO - [identity=site-1, run=simulate_job]: Client trainer got task: train
-2024-01-07 13:15:26,248 - SKLearnExecutor - INFO - [identity=site-1, run=simulate_job]: Client site-1 perform local evaluation
-2024-01-07 13:15:26,581 - SVMLearner - INFO - [identity=site-1, run=simulate_job, peer=simulator_server, peer_run=simulate_job, task_name=train, task_id=6ce657c1-a923-4360-8242-4ec2bd1a3adc]: AUC: 0.9949, Precision: 1.0000, Recall: 0.9899
-2024-01-07 13:15:26,583 - SKLearnExecutor - INFO - [identity=site-1, run=simulate_job]: Client site-1 perform local train
-2024-01-07 13:15:26,584 - SKLearnExecutor - INFO - [identity=site-1, run=simulate_job]: Local epochs finished. Returning shareable
-2024-01-07 13:15:26,584 - ClientRunner - INFO - [identity=site-1, run=simulate_job, peer=simulator_server, peer_run=simulate_job, task_name=train, task_id=6ce657c1-a923-4360-8242-4ec2bd1a3adc]: finished processing task
-2024-01-07 13:15:26,584 - ClientRunner - INFO - [identity=site-1, run=simulate_job, peer=simulator_server, peer_run=simulate_job, task_name=train, task_id=6ce657c1-a923-4360-8242-4ec2bd1a3adc]: try #1: sending task result to server
-2024-01-07 13:15:26,584 - ClientRunner - INFO - [identity=site-1, run=simulate_job, peer=simulator_server, peer_run=simulate_job, task_name=train, task_id=6ce657c1-a923-4360-8242-4ec2bd1a3adc]: checking task ...
-2024-01-07 13:15:26,586 - ClientRunner - INFO - [identity=site-1, run=simulate_job, peer=simulator_server, peer_run=simulate_job, task_name=train, task_id=6ce657c1-a923-4360-8242-4ec2bd1a3adc]: start to send task result to server
-2024-01-07 13:15:26,586 - FederatedClient - INFO - Starting to push execute result.
-2024-01-07 13:15:26,588 - Communicator - INFO -  SubmitUpdate size: 3939 Bytes. time: 0.0016973018646240234 seconds
-2024-01-07 13:15:26,589 - ClientRunner - INFO - [identity=site-1, run=simulate_job, peer=simulator_server, peer_run=simulate_job, task_name=train, task_id=6ce657c1-a923-4360-8242-4ec2bd1a3adc]: task result sent to server
-2024-01-07 13:15:26,589 - ClientTaskWorker - INFO - Finished one task run for client: site-1 interval: 0.05 task_processed: True
-2024-01-07 13:15:27,661 - FederatedClient - INFO - pull_task completed. Task name:__end_run__ Status:True 
-2024-01-07 13:15:27,661 - ClientRunner - INFO - [identity=site-1, run=simulate_job, peer=simulator_server, peer_run=simulate_job]: server asked to end the run
-2024-01-07 13:15:27,662 - ClientTaskWorker - INFO - End the Simulator run.
-2024-01-07 13:15:27,663 - ClientTaskWorker - INFO - Clean up ClientRunner for : site-1 
+2024-02-08 14:57:15,069 - ClientTaskWorker - INFO - ClientTaskWorker started to run
+2024-02-08 14:57:15,122 - Cell - INFO - site-1.simulate_job: created backbone external connector to tcp://localhost:34979
+2024-02-08 14:57:15,122 - nvflare.fuel.f3.sfm.conn_manager - INFO - Connector [CH00001 ACTIVE tcp://localhost:34979] is starting
+2024-02-08 14:57:16,067 - numexpr.utils - INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+2024-02-08 14:57:16,067 - numexpr.utils - INFO - NumExpr defaulting to 8 threads.
+2024-02-08 14:57:16,770 - SKLearnExecutor - INFO - [identity=site-1, run=simulate_job]: Client site-1 initialized with configs: 
+ Namespace(job_folder='/home/mike/ΠΤΥΧΙΑΚΗ/NVFlare_project/my_nvflare_example/FL-record-linkage/./jobs/sklearn_svm_2_uniform', workspace='/home/mike/ΠΤΥΧΙΑΚΗ/NVFlare_project/my_nvflare_example/FL-record-linkage/./workspace', clients=None, n_clients=2, threads=2, gpu='0', max_clients=100, set=[], log_config=None, config_folder='config', job_id='simulate_job', client_config='config/config_fed_client.json', env='config/environment.json', server_config='config/config_fed_server.json', client_name='site-1', token='319e3562-cbdc-474c-909d-4b8881ab42a1')
+2024-02-08 14:57:17,169 - ClientRunner - INFO - [identity=site-1, run=simulate_job]: client runner started
+2024-02-08 14:57:17,169 - ClientTaskWorker - INFO - Initialize ClientRunner for client: site-1
+2024-02-08 14:57:17,172 - Communicator - INFO - Received from simulator_server server  (579 Bytes). getTask: train time: 0.0018947124481201172 seconds
+2024-02-08 14:57:17,173 - FederatedClient - INFO - pull_task completed. Task name:train Status:True 
+2024-02-08 14:57:17,173 - ClientRunner - INFO - [identity=site-1, run=simulate_job, peer=simulator_server, peer_run=simulate_job]: got task assignment: name=train, id=b8e697d1-1510-496b-8222-9a91b29e8fad
+2024-02-08 14:57:17,173 - ClientRunner - INFO - [identity=site-1, run=simulate_job, peer=simulator_server, peer_run=simulate_job, task_name=train, task_id=b8e697d1-1510-496b-8222-9a91b29e8fad]: invoking task executor SKLearnExecutor
+2024-02-08 14:57:17,173 - SKLearnExecutor - INFO - [identity=site-1, run=simulate_job]: Client trainer got task: train
+2024-02-08 14:57:17,173 - SKLearnExecutor - INFO - [identity=site-1, run=simulate_job]: Client site-1 perform local train
+2024-02-08 14:57:18,004 - SKLearnExecutor - INFO - [identity=site-1, run=simulate_job]: Local epochs finished. Returning shareable
+2024-02-08 14:57:18,004 - ClientRunner - INFO - [identity=site-1, run=simulate_job, peer=simulator_server, peer_run=simulate_job, task_name=train, task_id=b8e697d1-1510-496b-8222-9a91b29e8fad]: finished processing task
+2024-02-08 14:57:18,004 - ClientRunner - INFO - [identity=site-1, run=simulate_job, peer=simulator_server, peer_run=simulate_job, task_name=train, task_id=b8e697d1-1510-496b-8222-9a91b29e8fad]: try #1: sending task result to server
+2024-02-08 14:57:18,005 - ClientRunner - INFO - [identity=site-1, run=simulate_job, peer=simulator_server, peer_run=simulate_job, task_name=train, task_id=b8e697d1-1510-496b-8222-9a91b29e8fad]: checking task ...
+2024-02-08 14:57:18,006 - ClientRunner - INFO - [identity=site-1, run=simulate_job, peer=simulator_server, peer_run=simulate_job, task_name=train, task_id=b8e697d1-1510-496b-8222-9a91b29e8fad]: start to send task result to server
+2024-02-08 14:57:18,006 - FederatedClient - INFO - Starting to push execute result.
+2024-02-08 14:57:18,008 - Communicator - INFO -  SubmitUpdate size: 6459 Bytes. time: 0.0016515254974365234 seconds
+2024-02-08 14:57:18,008 - ClientRunner - INFO - [identity=site-1, run=simulate_job, peer=simulator_server, peer_run=simulate_job, task_name=train, task_id=b8e697d1-1510-496b-8222-9a91b29e8fad]: task result sent to server
+2024-02-08 14:57:18,009 - ClientTaskWorker - INFO - Finished one task run for client: site-1 interval: 0.05 task_processed: True
+2024-02-08 14:57:18,565 - Communicator - INFO - Received from simulator_server server  (3256 Bytes). getTask: train time: 0.0017044544219970703 seconds
+2024-02-08 14:57:18,565 - FederatedClient - INFO - pull_task completed. Task name:train Status:True 
+2024-02-08 14:57:18,566 - ClientRunner - INFO - [identity=site-1, run=simulate_job, peer=simulator_server, peer_run=simulate_job]: got task assignment: name=train, id=c1c17b69-fb52-4478-8353-8b6a453fcd43
+2024-02-08 14:57:18,566 - ClientRunner - INFO - [identity=site-1, run=simulate_job, peer=simulator_server, peer_run=simulate_job, task_name=train, task_id=c1c17b69-fb52-4478-8353-8b6a453fcd43]: invoking task executor SKLearnExecutor
+2024-02-08 14:57:18,566 - SKLearnExecutor - INFO - [identity=site-1, run=simulate_job]: Client trainer got task: train
+2024-02-08 14:57:18,566 - SKLearnExecutor - INFO - [identity=site-1, run=simulate_job]: Client site-1 perform local evaluation
+2024-02-08 14:57:18,919 - SVMLearner - INFO - [identity=site-1, run=simulate_job, peer=simulator_server, peer_run=simulate_job, task_name=train, task_id=c1c17b69-fb52-4478-8353-8b6a453fcd43]: Precision: 0.9976, Recall: 0.8320
+2024-02-08 14:57:18,920 - SKLearnExecutor - INFO - [identity=site-1, run=simulate_job]: Client site-1 perform local train
+2024-02-08 14:57:18,921 - SKLearnExecutor - INFO - [identity=site-1, run=simulate_job]: Local epochs finished. Returning shareable
+2024-02-08 14:57:18,921 - ClientRunner - INFO - [identity=site-1, run=simulate_job, peer=simulator_server, peer_run=simulate_job, task_name=train, task_id=c1c17b69-fb52-4478-8353-8b6a453fcd43]: finished processing task
+2024-02-08 14:57:18,921 - ClientRunner - INFO - [identity=site-1, run=simulate_job, peer=simulator_server, peer_run=simulate_job, task_name=train, task_id=c1c17b69-fb52-4478-8353-8b6a453fcd43]: try #1: sending task result to server
+2024-02-08 14:57:18,922 - ClientRunner - INFO - [identity=site-1, run=simulate_job, peer=simulator_server, peer_run=simulate_job, task_name=train, task_id=c1c17b69-fb52-4478-8353-8b6a453fcd43]: checking task ...
+2024-02-08 14:57:18,923 - ClientRunner - INFO - [identity=site-1, run=simulate_job, peer=simulator_server, peer_run=simulate_job, task_name=train, task_id=c1c17b69-fb52-4478-8353-8b6a453fcd43]: start to send task result to server
+2024-02-08 14:57:18,924 - FederatedClient - INFO - Starting to push execute result.
+2024-02-08 14:57:18,926 - Communicator - INFO -  SubmitUpdate size: 6459 Bytes. time: 0.0018382072448730469 seconds
+2024-02-08 14:57:18,926 - ClientRunner - INFO - [identity=site-1, run=simulate_job, peer=simulator_server, peer_run=simulate_job, task_name=train, task_id=c1c17b69-fb52-4478-8353-8b6a453fcd43]: task result sent to server
+2024-02-08 14:57:18,926 - ClientTaskWorker - INFO - Finished one task run for client: site-1 interval: 0.05 task_processed: True
+2024-02-08 14:57:20,047 - FederatedClient - INFO - pull_task completed. Task name:__end_run__ Status:True 
+2024-02-08 14:57:20,048 - ClientRunner - INFO - [identity=site-1, run=simulate_job, peer=simulator_server, peer_run=simulate_job]: server asked to end the run
+2024-02-08 14:57:20,048 - ClientTaskWorker - INFO - End the Simulator run.
+2024-02-08 14:57:20,048 - ClientTaskWorker - INFO - Clean up ClientRunner for : site-1 
