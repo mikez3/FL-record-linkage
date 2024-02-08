@@ -2,7 +2,7 @@
 
 task_name="sklearn_svm"
 
-for site_num in 3;
+for site_num in 2;
 do
     for split_mode in uniform;
     do
