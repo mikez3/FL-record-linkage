@@ -8,3 +8,7 @@ tensorboard
 nameparser
 rapidfuzz
 scipy
+dask
+dask_cudf
+fastdist
+cupy
