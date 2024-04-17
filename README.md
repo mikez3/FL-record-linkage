@@ -12,9 +12,13 @@ This project provides a privacy-preserving solution for record matching, elimina
 
 [`run_experiment_simulator.sh`](#run-experiment-with-fl-simulator): Runs the FL simulator
 
-[`test_only_data_generator.py`](#test-trained-models-on-bigger-datasets): Creates test datasets. Suitable for big tests files
+`test_only_data_generator.py`: Creates test datasets. Suitable for big tests files
 
-[`tester.py`](#test-trained-models-on-bigger-datasets): Tests saved models on selected datasets
+`tester.py`: Tests saved models on selected datasets
+
+`jobs`: Contains python and config files for clients and server in FL simulator
+
+`workspace`: Contains files that created after FL
 
 
 ## NVFLare
@@ -140,8 +144,4 @@ You can monitor the Precision and Recall metrics of the resulting global model t
 ```bash
 python3 -m tensorboard.main --logdir='workspace'
 ```
-
-## Test trained models on bigger datasets
-`test_only_data_generator.py`: Creates big test datasets
-`tester.py`: Tests saved models on selected datasets
 
