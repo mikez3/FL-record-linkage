@@ -16,9 +16,9 @@ This project provides a privacy-preserving solution for record matching, elimina
 
 `tester.py`: Tests saved models on selected datasets
 
-`jobs`: Contains python and config files for clients and server in FL simulator
+[`jobs`](#prepare-clients-configs-with-proper-data-information): Contains python and config files for clients and server in FL simulator
 
-`workspace`: Contains files that created after FL
+`workspace`: Contains files that used during FL (like configs and python) and files that created after FL for server and each client
 
 
 ## NVFLare
