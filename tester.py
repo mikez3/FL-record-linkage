@@ -10,16 +10,14 @@ metric = 'cosine'
 kernel = 'rbf'
 lines_trained = '500'
 ref = '200'
-lines_to_test = 50000
+lines_to_test = 5000
 
 print(kernel, ',lines trained:', lines_trained)
-model = joblib.load('/path/to/trained_models/'+kernel+'/'+metric+'_n'+lines_trained+'_ref'+ref+'.joblib')
+model = joblib.load('/FL-record-linkage/trained_models/'+kernel+'/'+metric+'_n'+lines_trained+'_ref'+ref+'.joblib')
 # %%
 
-ref = '200'
+data_path = '/Data/test samples/test_'+metric+'_n'+str(lines_to_test)+'_ref'+ref+'.csv'
 
-data_path = '/path/to/tests_datasets/test_'+metric+'_n'+str(lines_to_test)+'_ref'+ref+'.csv'
-# data_path = f'/media/mike/corsair/correct_data/new_dataset/only_tests/parquet/parquet_test_cosine_n50000_ref200_chunk_*_*.parquet'
 chunksize = 500000
 csv_lines = lines_to_test**2
 num_chunks = csv_lines // chunksize + 1
@@ -40,7 +38,6 @@ def process_chunk(chunk):
     return chunk_fp, chunk_fn, chunk_tp
 
 chunk = dask_cudf.read_csv(data_path, header=None, blocksize=chunksize)
-# chunk = dask_cudf.read_parquet(data_path, blocksize=chunksize)
 with ProgressBar():
     results = chunk.map_partitions(process_chunk, meta=(None, 'int64')).compute()
 
