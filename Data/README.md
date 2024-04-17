@@ -1,0 +1,1 @@
+This subfolder contains CSV files used for testing and training. The samples can be found [here](https://drive.google.com/drive/folders/1Vh44-FaknzOxHqD6Nb-FplXqLDJNMcUc?usp=drive_link).
