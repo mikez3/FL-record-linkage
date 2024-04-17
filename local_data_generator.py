@@ -21,9 +21,6 @@ from scipy.spatial.distance import cdist
 
 from distutils.util import strtobool
 
-def custom_distance(pointA, pointB, threshold = 1):
-    return np.count_nonzero(np.abs(pointA - pointB) <= threshold)
-
 
 def read_and_procese_csv(path, nrows, ref_nrows):
     # Read csvs
@@ -94,11 +91,7 @@ def edit_distance_no_ref(dfA, dfB):
 
 
 def calculate_distance_matrices(metric, threshold, ref=True, *args):
-    distances = []
-    # metrics = euclidean, cityblock, seuclidean, sqeuclidean, cosine, correlation, hamming, jaccard, jensenshannon, chebyshev, canberra, braycurtis
-    if metric == 'custom_distance':
-        metric = custom_distance
-    
+    distances = []  
     if ref:
         for edit_distances_AtoRef, edit_distances_BtoRef in args:
             distances.append(np.array(cdist(edit_distances_AtoRef, edit_distances_BtoRef, metric=metric)).ravel())            
@@ -137,7 +130,7 @@ def main():
     parser.add_argument('--refrows', type=int, default=200, help='Number of rows to read from each CSV file')
     parser.add_argument('--metric', type=str, default='cosine', help='The metric to use for distance calculation')
     parser.add_argument('--threshold', type=str, default=1, help='Threshold for the custom_distance function')
-    parser.add_argument('--filename', type=str, default="/tmp/dataset/data.csv", help='The name of the output CSV file')
+    parser.add_argument('--filename', type=str, default="Data/test samples/no_ref_tests/data.csv", help='The name of the output CSV file')
     parser.add_argument('--ref', type=strtobool, default=True, help='Use a reference set in the calculations. Set to True to use a reference set, or False to not use a reference set.')
     args = parser.parse_args()
     
@@ -154,7 +147,6 @@ def main():
         edit_distances_AtoB_names, edit_distances_AtoB_lastnames, edit_distances_AtoB_middlenames = edit_distance_no_ref(dfA, dfB)
         distances = np.column_stack((edit_distances_AtoB_names, edit_distances_AtoB_lastnames, edit_distances_AtoB_middlenames)).astype(float)
     labels = add_labels(dfA, dfB)
-    save_to_csv(distances, labels, args.filename)
     if labels.isnull().values.any():
         print("labels contains NaN values")
         return 0
@@ -162,6 +154,7 @@ def main():
     if np.isnan(distances).any():
         print("distances contains NaN values")
         return 0
+    save_to_csv(distances, labels, args.filename)
     print("Successfully created",len(distances), "data points")
 
 if __name__ == "__main__":
