@@ -3,18 +3,32 @@
 
 This project provides a privacy-preserving solution for record matching, eliminating the need for dataholders to transfer their data externally in any form. By leveraging a Federated Learning approach with Support Vector Machines and using a reference set, it achieves high-quality matching comparable to non-Federated Learning setups for plain record linkage.
 
+## Quick info:
+[`federated_data_generator.py`](#data-generator): Generates data for federated learning simulator
+
+[`local_data_generator.py`](#data-generator): Generates data for local training (no Federated Learning here)
+
+[`prepare_job_config.sh`](#prepare-clients-configs-with-proper-data-information): Generates the configuration files
+
+[`run_experiment_simulator.sh`](#run-experiment-with-fl-simulator): Runs the FL simulator
+
+[`test_only_data_generator.py`](#test-trained-models-on-bigger-datasets): Creates test datasets. Suitable for big tests files
+
+[`tester.py`](#test-trained-models-on-bigger-datasets): Tests saved models on selected datasets
+
+
 ## NVFLare
 
 This project was implemented using NVFlare.
 
 For more detailed information about the framework, you may refer to the [Scikit-learn SVM example](https://github.com/NVIDIA/NVFlare/tree/main/examples/advanced/sklearn-svm) in the [NVIDIA NVFlare](https://github.com/NVIDIA/NVFlare/tree/main) repository. This example provides a detailed walkthrough of how to use Scikit-learn's SVM with NVFlare.
 
-## cuML - Scikit-learn
-For faster execution times with large datasets, it is recommended to use [cuML](https://docs.rapids.ai/api/cuml/stable/). Alternatively, [Scikit-learn](https://scikit-learn.org/) can be used as a backend instead of cuML.
+<!-- ## cuML - Scikit-learn
+For faster execution times with large datasets, it is recommended to use [cuML](https://docs.rapids.ai/api/cuml/stable/). Alternatively, [Scikit-learn](https://scikit-learn.org/) can be used as a backend instead of cuML. -->
 
 ## Data generator
 
-Here the [cudf](https://github.com/rapidsai/cudf) library was used for faster execution.
+<!-- Here the [cudf](https://github.com/rapidsai/cudf) library was used for faster execution. -->
 
 There are 2 options for data generation depanding if the data is going to be used for local training or in a Federated environment.
 
@@ -36,13 +50,14 @@ For the second option (i.e. the dataset for federated learning), the data genera
 
 2. The script calculates the Levenshtein distance (edit distance) between the names in the data files and the names in the reference set in order to create numerical data points.
 
-3. The script then calculates distance matrices using the [cdist](https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.distance.cdist.html) function from scipy. A custom distance metric is also implemented as an alternative, which calculates the total number of edit distances between two records that have a difference of &le; 1 ([see below for more details](#custom-distance-metric)). 
+3. The script then calculates distance matrices using the [cdist](https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.distance.cdist.html) function from scipy. 
+<!-- A custom distance metric is also implemented as an alternative, which calculates the total number of edit distances between two records that have a difference of &le; 1 ([see below for more details](#custom-distance-metric)).  -->
 
 4. Next, labels are assigned. A label of 1 is given when two data points have the same 'id', indicating that they represent the same entity. Conversely, a label of 0 is given when they have different 'ids', indicating that they are different entities.
 
 5. The script saves the resulting dataset to a CSV file, which is located at `/tmp/dataset/data.csv`.
 
-#### Custom Distance Metric
+<!-- #### Custom Distance Metric
 The custom metric is a function that calculates the number of records in the reference set for which two real database records have an edit distance within a threshold of ±1.
 The value range of the function is [0, len(reference_set)], with larger values of the function implying greater similarity.
 
@@ -53,12 +68,12 @@ Here [1, 2] contrasts the edit distances of the FirstName of the first real reco
 For each dimension we calculate how many edit distances are "close" for each record.
 In the 1st dimension we have |1-1|=0 &le;1 and |2-3|=1 &le; 1. We are interested in how many results are less than or equal to 1. So here it is 2 and this is the value the function returns.
 In the 2nd dimension, half of the records are similar, i.e. with one reference set name, the records have very similar or the same edit distance, while with the other they do not.
-Larger threshold values give a greater tolerance for the function to consider larger edit distance differences as "close".
+Larger threshold values give a greater tolerance for the function to consider larger edit distance differences as "close". -->
 
 
 
 ## Prepare clients' configs with proper data information 
-In this project, a script is used to automatically generate the configuration files for a specific setting, following the approach suggested in the NVFlare documentation. This script simplifies the process and eliminates the need for manual copying and modification of the files.
+A script is used to automatically generate the configuration files for a specific setting, following the approach suggested in the NVFlare documentation. This script simplifies the process and eliminates the need for manual copying and modification of the files.
 
 You can run the script with the following command:
 
@@ -109,7 +124,7 @@ Below is a sample config for site-1, saved to `./jobs/sklearn_svm_2_uniform/app_
 ```
 
 ## Differential Privacy
-Differential Privacy can be added using Randomized Response. This is applied to the labels of support vectors after local training and before they are sent to the server. The code for this option is currently commented out in the `/jobs/sklearn_svm_base/app/custom/svm_learner.py` file.
+Differential Privacy can also be added using Randomized Response. This is applied to the labels of support vectors after local training and before they are sent to the server. The code for this option is currently commented out in the `/jobs/sklearn_svm_base/app/custom/svm_learner.py` file.
 
 
 ## Run experiment with FL simulator
@@ -125,3 +140,8 @@ You can monitor the Precision and Recall metrics of the resulting global model t
 ```bash
 python3 -m tensorboard.main --logdir='workspace'
 ```
+
+## Test trained models on bigger datasets
+`test_only_data_generator.py`: Creates big test datasets
+`tester.py`: Tests saved models on selected datasets
+
