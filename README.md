@@ -1,5 +1,5 @@
 # Federated Learning approach for Privacy Preserving Record Linkage
-> **Notice**: This project is currently under development.
+<!-- > **Notice**: This project is currently under development. -->
 
 This project provides a privacy-preserving solution for record matching, eliminating the need for dataholders to transfer their data externally in any form. By leveraging a Federated Learning approach with Support Vector Machines and using a reference set, it achieves high-quality matching comparable to non-Federated Learning setups for plain record linkage.
 
